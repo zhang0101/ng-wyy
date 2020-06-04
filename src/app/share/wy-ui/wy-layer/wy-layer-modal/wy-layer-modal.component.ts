@@ -1,12 +1,37 @@
-import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, AfterViewInit, ViewChild, Renderer2, Inject, Output, EventEmitter, Input, OnChanges, SimpleChanges, PLATFORM_ID } from '@angular/core';
-import { ModalTypes } from '../../../../store/reducers/member.reducer';
-import { Overlay, OverlayRef, OverlayKeyboardDispatcher, BlockScrollStrategy, OverlayContainer } from '@angular/cdk/overlay';
-import { BatchActionsService } from 'src/app/store/batch-actions.service';
-import { ESCAPE } from '@angular/cdk/keycodes';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { trigger, style, transition, animate, state } from '@angular/animations';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ElementRef,
+  ChangeDetectorRef,
+  AfterViewInit,
+  ViewChild,
+  Renderer2,
+  Inject,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  PLATFORM_ID
+} from '@angular/core';
+import {ModalTypes} from '../../../../store/reducers/member.reducer';
+import {
+  Overlay,
+  OverlayRef,
+  OverlayKeyboardDispatcher,
+  BlockScrollStrategy,
+  OverlayContainer
+} from '@angular/cdk/overlay';
+import {BatchActionsService} from 'src/app/store/batch-actions.service';
+import {ESCAPE} from '@angular/cdk/keycodes';
+import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {trigger, style, transition, animate, state} from '@angular/animations';
 
-interface SizeType { w: number; h: number; }
+interface SizeType {
+  w: number;
+  h: number;
+}
 
 @Component({
   selector: 'app-wy-layer-modal',
@@ -14,8 +39,8 @@ interface SizeType { w: number; h: number; }
   styleUrls: ['./wy-layer-modal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [trigger('showHide', [
-    state('show', style({ transform: 'scale(1)', opacity: 1 })),
-    state('hide', style({ transform: 'scale(0)', opacity: 0 })),
+    state('show', style({transform: 'scale(1)', opacity: 1})),
+    state('hide', style({transform: 'scale(0)', opacity: 0})),
     transition('show<=>hide', animate('0.1s'))
   ])]
 })
@@ -37,9 +62,10 @@ export class WyLayerModalComponent implements OnInit, AfterViewInit, OnChanges {
   private scrollStrategy: BlockScrollStrategy;
   private overlayContainerEl: HTMLElement;
   private resizeHandler: () => void;
-  @ViewChild('modalContainer', { static: false }) private modalRef: ElementRef;
+  @ViewChild('modalContainer', {static: true}) private modalRef: ElementRef;
   @Output() onLoadMySheets = new EventEmitter<void>();
   private isBrowser: boolean;
+
   constructor(
     @Inject(PLATFORM_ID) private plateformId: object,
     @Inject(DOCUMENT) private doc: Document,
@@ -136,6 +162,7 @@ export class WyLayerModalComponent implements OnInit, AfterViewInit, OnChanges {
       h: dom.offsetHeight
     };
   }
+
   private getWIndowSize(): SizeType {
     return {
       w: window.innerWidth || this.doc.documentElement.clientWidth || this.doc.body.offsetWidth,

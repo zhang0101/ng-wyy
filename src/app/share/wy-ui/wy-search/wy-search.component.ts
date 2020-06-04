@@ -22,8 +22,8 @@ export class WySearchComponent implements OnInit, AfterViewInit, OnChanges {
   private overlayRef: OverlayRef;
 
 
-  @ViewChild('search', { static: false }) private defaultRef: ElementRef;
-  @ViewChild('nzInput', { static: false }) private nzInput: ElementRef;
+  @ViewChild('search') private defaultRef: ElementRef;
+  @ViewChild('nzInput') private nzInput: ElementRef;
   constructor(
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef

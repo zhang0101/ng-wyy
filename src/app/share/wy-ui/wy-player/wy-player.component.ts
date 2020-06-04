@@ -96,7 +96,7 @@ export class WyPlayerComponent implements OnInit {
 
 
   @ViewChild('audio', { static: true }) private audio: ElementRef;
-  @ViewChild(WyPlayerPanelComponent, { static: false }) private playerPanel: WyPlayerPanelComponent;
+  @ViewChild(WyPlayerPanelComponent, {static: true}) private playerPanel: WyPlayerPanelComponent;
   private audioEl: HTMLAudioElement;
 
 
