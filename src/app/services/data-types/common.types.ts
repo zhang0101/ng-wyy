@@ -9,7 +9,7 @@ export interface SampleBack extends AnyJson {
 export interface Banner {
   targetId: number;
   url: string;
-  imageUrl: string;
+  picUrl: string;
 }
 
 
